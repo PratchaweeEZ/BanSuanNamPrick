@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>บ้านสวน น้ำพริกลงเรือ | อร่อยเข้มข้น สูตรโฮมเมด</title>
+<meta name="description" content="น้ำพริกลงเรือทำมือจากบ้านสวนริมแม่น้ำกก เชียงราย ใช้พริกจากสวน เจียวหอมกระเทียมทีละกระทะ ตำครกหิน สั่งซื้อโทร 086-985-7830">
+<meta name="theme-color" content="#0d1710">
+<meta property="og:type" content="website">
+<meta property="og:title" content="บ้านสวน น้ำพริกลงเรือ">
+<meta property="og:description" content="อร่อยเข้มข้น สูตรโฮมเมด · น้ำพริกลงเรือทำมือจากริมน้ำกก เชียงราย">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:locale" content="th_TH">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Chonburi&family=Sriracha&display=swap">
+<style>
+/* Layout: a night on the Kok River. Orbital hero (10 cards circling a stone mortar) → story map → taste curve → one-day craft strip → shop → pairings → hacks → gift → order → contact over the dusk river. */
+:root {
+  --night: #0d1710;
+  --forest: #17301d;
+  --forest-2: #20402a;
+  --gold: #d6ae5c;
+  --gold-hi: #f1d58c;
+  --chili: #c93a2e;
+  --chili-hi: #e8553f;
+  --cream: #f4ead3;
+  --mist: rgba(244, 234, 211, 0.74);
+  --faint: rgba(244, 234, 211, 0.5);
+  --line: rgba(214, 174, 92, 0.3);
+  --glass: rgba(23, 48, 29, 0.55);
+  --heat: 214, 174, 92;           /* firefly/glow rgb, changed by the spice control */
+
+  --f-display: 'Chonburi', 'Sriracha', serif;
+  --f-hand: 'Sriracha', 'Anuphan', cursive;
+  --f-body: 'Anuphan', 'Noto Sans Thai', 'Leelawadee UI', 'Thonburi', sans-serif;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ring-radius: 380px;
+  --gutter: clamp(16px, 5vw, 64px);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--cream);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.3; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 3px; border-radius: 6px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- ambient layers ---------- */
+#fireflies { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.aura {
+  position: fixed; inset: -25%; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle at 50% 40%, rgba(var(--heat), 0.16), rgba(32, 64, 42, 0.25) 30%, transparent 62%);
+  animation: drift 22s ease-in-out infinite alternate;
+  transition: background 1.2s var(--ease);
+}
+@keyframes drift { from { transform: translate3d(-2%, -1%, 0) scale(1); } to { transform: translate3d(2%, 3%, 0) scale(1.12); } }
+
+/* ---------- loader ---------- */
+.loader {
+  position: fixed; inset: 0; z-index: 100; display: grid; place-items: center;
+  background: var(--night); transition: opacity .6s var(--ease), visibility .6s;
+}
+.loader.done { opacity: 0; visibility: hidden; }
+.loader-inner { display: grid; justify-items: center; gap: 14px; }
+.loader img { width: 120px; animation: pound .46s var(--ease) 3; }
+.loader span { font-family: var(--f-hand); color: var(--gold-hi); font-size: 1.1rem; letter-spacing: .04em; }
+@keyframes pound { 0% { transform: translateY(0) } 40% { transform: translateY(10px) scale(.97) } 100% { transform: translateY(0) } }
+
+/* ---------- nav ---------- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) var(--gutter) 12px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  transition: background .5s var(--ease), box-shadow .5s var(--ease);
+}
+.nav.scrolled { background: rgba(13, 23, 16, 0.86); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 1px 0 var(--line); }
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.brand img { width: 48px; height: 48px; flex: none; filter: drop-shadow(0 4px 10px rgba(0,0,0,.5)); }
+.brand-text { display: grid; line-height: 1.15; }
+.brand-text b { font-family: var(--f-display); font-weight: 400; color: var(--gold-hi); font-size: 1.05rem; }
+.brand-text small { font-family: var(--f-hand); color: var(--mist); font-size: .82rem; }
+.nav-links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; align-items: center; }
+.nav-links a {
+  display: grid; justify-items: center; gap: 2px; padding: 4px 10px; border-radius: 12px;
+  font-size: .8rem; color: var(--mist); transition: color .3s, background .3s;
+}
+.nav-links a img { width: 34px; height: 34px; transition: transform .45s var(--ease); }
+.nav-links a:hover { color: var(--gold-hi); background: rgba(214, 174, 92, .08); }
+.nav-links a:hover img { transform: translateY(-3px) rotate(-6deg) scale(1.08); }
+.nav-call {
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  padding: 10px 18px; border-radius: 999px; background: var(--chili); color: var(--cream);
+  font-weight: 600; font-size: .92rem; box-shadow: inset 0 0 0 1px rgba(241, 213, 140, .45), 0 6px 20px rgba(201, 58, 46, .35);
+}
+.menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 12px; padding: 10px; cursor: pointer; }
+.menu-toggle span { display: block; width: 22px; height: 2px; background: var(--gold-hi); margin: 4px 0; transition: transform .35s var(--ease), opacity .35s; }
+.menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.mobile-menu {
+  position: fixed; inset: 0; z-index: 55; background: rgba(13, 23, 16, .97);
+  display: grid; align-content: center; padding: 90px var(--gutter) 40px; overflow-y: auto;
+  opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility .4s;
+}
+.mobile-menu.open { opacity: 1; visibility: visible; }
+.mobile-menu ul { list-style: none; margin: 0 auto; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: min(420px, 100%); }
+.mobile-menu a { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; border: 1px solid var(--line); background: var(--glass); font-size: 1rem; }
+.mobile-menu a img { width: 44px; height: 44px; }
+
+/* ---------- hero ---------- */
+.hero {
+  position: relative; z-index: 2; overflow: hidden;
+  display: grid; grid-template-rows: minmax(540px, 1fr) auto;
+  min-height: clamp(760px, 100svh, 1000px);
+  padding-top: 80px;
+}
+.hero-bg { position: absolute; inset: 0; z-index: -1; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .75; }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,23,16,.55), rgba(13,23,16,.1) 35%, rgba(13,23,16,.6) 75%, var(--night)); }
+.stage {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  perspective: 1300px; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+}
+.stage.dragging { cursor: grabbing; }
+.parallax { position: relative; width: 1px; height: 1px; transform-style: preserve-3d; }
+.core {
+  position: absolute; left: 0; top: 0; width: 300px; margin: -150px 0 0 -150px;
+  transform: translateZ(0); pointer-events: none;
+}
+.core img { width: 100%; filter: drop-shadow(0 30px 40px rgba(0,0,0,.6)) drop-shadow(0 0 40px rgba(var(--heat), .25)); animation: bob 6s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
+.steam { position: absolute; left: 30%; top: -18%; width: 40%; height: 50%; }
+.steam i {
+  position: absolute; bottom: 0; width: 14px; height: 70px; border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(244,234,211,.45), transparent 70%);
+  filter: blur(6px); opacity: 0; animation: steam 4.5s ease-in infinite;
+}
+.steam i:nth-child(1) { left: 20%; }
+.steam i:nth-child(2) { left: 48%; animation-delay: 1.5s; }
+.steam i:nth-child(3) { left: 72%; animation-delay: 3s; }
+@keyframes steam { 0% { transform: translateY(20px) scaleX(1); opacity: 0 } 30% { opacity: .9 } 100% { transform: translateY(-90px) scaleX(2.4); opacity: 0 } }
+
+.ring-tilt {
+  position: absolute; top: 0; left: 0; transform-style: preserve-3d;
+  transform: rotateX(var(--tiltX, -16deg)) scale3d(var(--zoom, 1), var(--zoom, 1), var(--zoom, 1));
+  transition: transform .8s var(--ease);
+}
+.ring { position: absolute; top: 0; left: 0; transform-style: preserve-3d; will-change: transform; }
+.panel {
+  position: absolute; top: 0; left: 0; width: 168px; height: 224px; margin: -112px 0 0 -84px;
+  border-radius: 18px; overflow: hidden; padding: 0; border: 0; cursor: pointer; background: var(--forest);
+  box-shadow: 0 0 0 1px rgba(241, 213, 140, .45), 0 0 34px rgba(var(--heat), .18);
+  transform: rotateY(var(--ry)) translateZ(var(--tz)) rotateZ(var(--rz)) scale(var(--s, 1));
+  transition: transform .7s var(--ease), box-shadow .7s var(--ease);
+}
+.panel img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.panel::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,23,16,.92), transparent 55%); transition: opacity .5s; }
+.panel::after { content: ''; position: absolute; inset: 6px; border-radius: 13px; border: 1px solid rgba(241, 213, 140, .35); pointer-events: none; }
+.panel:hover, .panel:focus-visible { --s: 1.1; box-shadow: 0 0 0 1.5px var(--gold-hi), 0 0 50px rgba(var(--heat), .5); }
+.panel-cap {
+  position: absolute; left: 14px; right: 14px; bottom: 12px; text-align: left; line-height: 1.3;
+  font-family: var(--f-display); font-size: .95rem; color: var(--gold-hi); text-shadow: 0 2px 10px rgba(0,0,0,.9);
+}
+.panel-cap small { display: block; font-family: var(--f-body); font-size: .72rem; color: var(--mist); margin-top: 2px; }
+
+.float-ing { position: absolute; z-index: 1; pointer-events: none; filter: drop-shadow(0 12px 18px rgba(0,0,0,.55)); }
+.float-ing img { width: 100%; animation: bob 7s ease-in-out infinite; }
+.fi-1 { width: 96px; left: 7%; top: 22%; }
+.fi-2 { width: 92px; right: 8%; top: 18%; }
+.fi-2 img { animation-delay: -2s; }
+.fi-3 { width: 82px; left: 12%; top: 62%; }
+.fi-3 img { animation-delay: -4s; }
+.fi-4 { width: 92px; right: 12%; top: 60%; }
+.fi-4 img { animation-delay: -1s; }
+.fi-5 { width: 56px; left: 30%; top: 12%; }
+.fi-5 img { animation-delay: -3s; }
+
+.hero-copy { position: relative; z-index: 3; text-align: center; padding: 18px var(--gutter) 120px; display: grid; justify-items: center; gap: 14px; }
+.eyebrow { font-size: .88rem; letter-spacing: .12em; color: var(--gold); display: inline-flex; align-items: center; gap: 12px; }
+.eyebrow::before, .eyebrow::after { content: ''; width: 34px; height: 1px; background: currentColor; opacity: .7; }
+.plaque {
+  position: relative; width: min(760px, 100%); aspect-ratio: 1300 / 431; max-width: 100%;
+  background: url(img/plaque.webp) center / contain no-repeat;
+  display: grid; place-items: center; padding: 0 14%;
+}
+.plaque h1 { display: grid; line-height: 1.12; color: var(--gold-hi); text-shadow: 0 2px 0 rgba(0,0,0,.35), 0 0 30px rgba(241, 213, 140, .25); }
+.plaque h1 .t1 { font-size: clamp(1.9rem, 5.6vw, 3.7rem); }
+.plaque h1 .t2 { font-size: clamp(1.05rem, 2.9vw, 1.9rem); color: var(--cream); }
+.tagline { font-family: var(--f-hand); font-size: clamp(1.35rem, 3.4vw, 2rem); color: var(--chili-hi); text-shadow: 0 0 24px rgba(201,58,46,.35); }
+.hero-lead { max-width: 560px; color: var(--mist); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+  padding: 13px 26px; border-radius: 999px; font-weight: 600; font-size: 1rem; border: 0;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease), background .3s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--chili); color: var(--cream); box-shadow: inset 0 0 0 1px rgba(241,213,140,.5), 0 10px 30px rgba(201,58,46,.35); }
+.btn-primary:hover { background: var(--chili-hi); box-shadow: inset 0 0 0 1px rgba(241,213,140,.7), 0 14px 40px rgba(201,58,46,.5); }
+.btn-ghost { background: rgba(13,23,16,.45); color: var(--gold-hi); box-shadow: inset 0 0 0 1px var(--gold); }
+.btn-ghost:hover { background: rgba(214,174,92,.12); }
+.btn-sm { padding: 9px 16px; font-size: .9rem; }
+
+.hero-controls {
+  position: absolute; z-index: 4; right: var(--gutter); top: 120px;
+  display: grid; gap: 12px; justify-items: end;
+  padding: 14px 16px; border-radius: 16px; background: rgba(13,23,16,.5); box-shadow: inset 0 0 0 1px var(--line);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.ctrl { display: flex; align-items: center; gap: 10px; }
+.ctrl-label { font-size: .78rem; color: var(--mist); }
+.seg { display: flex; gap: 3px; padding: 3px; border-radius: 999px; background: rgba(244,234,211,.06); box-shadow: inset 0 0 0 1px var(--line); }
+.seg button { width: 32px; height: 28px; border: 0; border-radius: 999px; background: none; cursor: pointer; display: grid; place-items: center; transition: background .4s; }
+.seg button img { height: 16px; width: auto; opacity: .55; transition: opacity .3s; }
+.seg button:nth-child(2) img { height: 20px; }
+.seg button:nth-child(3) img { height: 24px; }
+.seg button.is-active { background: rgba(201,58,46,.35); }
+.seg button.is-active img { opacity: 1; }
+.seg .dot { display: block; border-radius: 50%; background: var(--faint); }
+.seg button:nth-child(1) .dot { width: 6px; height: 6px; }
+.seg button:nth-child(2) .dot { width: 9px; height: 9px; }
+.seg button:nth-child(3) .dot { width: 12px; height: 12px; }
+.seg button.is-active .dot { background: var(--gold-hi); box-shadow: 0 0 10px var(--gold-hi); }
+.switch { position: relative; width: 46px; height: 26px; border-radius: 26px; padding: 0; cursor: pointer; background: rgba(244,234,211,.08); border: 1px solid var(--line); transition: background .5s; }
+.switch .knob { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--mist); transition: transform .5s var(--ease), background .5s; }
+.switch[aria-checked="true"] { background: rgba(214,174,92,.5); }
+.switch[aria-checked="true"] .knob { transform: translateX(20px); background: var(--gold-hi); }
+.drag-hint { font-size: .74rem; color: var(--faint); }
+
+.river { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: 2; pointer-events: none; }
+.river svg { position: absolute; bottom: 0; width: 200%; height: 100%; }
+.river .w1 { animation: wave 18s linear infinite; }
+.river .w2 { animation: wave 11s linear infinite reverse; opacity: .7; }
+@keyframes wave { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+.sail { position: absolute; bottom: 36px; width: 150px; left: -160px; animation: sail 38s linear infinite; }
+.sail img { animation: rock 3.4s ease-in-out infinite; transform-origin: 50% 80%; }
+@keyframes sail { from { left: -170px } to { left: 105% } }
+@keyframes rock { 0%,100% { transform: rotate(-2deg) translateY(0) } 50% { transform: rotate(2deg) translateY(-4px) } }
+
+/* ---------- generic sections ---------- */
+main { position: relative; z-index: 2; }
+.section { position: relative; padding-block: clamp(72px, 11vw, 140px); padding-inline: var(--gutter); }
+.wrap { max-width: 1180px; margin: 0 auto; }
+.section-head { max-width: 680px; margin-bottom: clamp(36px, 5vw, 60px); display: grid; gap: 14px; }
+.section-head.center { margin-inline: auto; text-align: center; justify-items: center; }
+.section-head .eyebrow::before { display: none; }
+.section-head.center .eyebrow::before { display: block; }
+.section-head h2 { font-size: clamp(1.8rem, 4.4vw, 3rem); color: var(--gold-hi); }
+.section-head p { color: var(--mist); font-size: 1.05rem; }
+.patterned::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; opacity: .5;
+  background: url(img/pattern.webp) 0 0 / 360px repeat;
+  -webkit-mask: linear-gradient(transparent, #000 15%, #000 85%, transparent); mask: linear-gradient(transparent, #000 15%, #000 85%, transparent);
+}
+.lift { transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.lift.pending { opacity: 0; transform: translateY(28px); }
+
+/* ---------- story ---------- */
+.legend { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.legend-img { border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 30px 60px rgba(0,0,0,.45); }
+.legend-img img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.legend-text { display: grid; gap: 18px; max-width: 34em; }
+.legend-text h3 { font-size: clamp(1.4rem, 3vw, 2rem); color: var(--gold-hi); }
+.legend-text p { color: var(--mist); }
+.legend-text .note { font-size: .86rem; color: var(--faint); }
+.route { margin-top: clamp(56px, 8vw, 100px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.route-text { display: grid; gap: 16px; }
+.route-text h3 { font-size: clamp(1.3rem, 2.8vw, 1.8rem); color: var(--gold-hi); }
+.route-text p { color: var(--mist); }
+.route-stops { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 10px; }
+.route-stops li { display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: baseline; color: var(--mist); }
+.route-stops li::before { content: ''; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--gold); transform: translateY(2px); }
+.route-stops b { color: var(--cream); font-weight: 600; }
+.map { position: relative; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 30px 60px rgba(0,0,0,.45); }
+.map > .map-base { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map .path-bg { fill: none; stroke: rgba(201,58,46,.25); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 2 14; }
+.map .path-fg { fill: none; stroke: var(--chili); stroke-width: 5; stroke-linecap: round; }
+.map .city { fill: var(--chili); stroke: var(--cream); stroke-width: 4; }
+.map .city-label { font-family: var(--f-body); font-weight: 700; font-size: 30px; fill: #3b2a14; paint-order: stroke; stroke: rgba(244,234,211,.9); stroke-width: 8px; }
+.map-boat { position: absolute; width: 13%; left: 0; top: 0; transform: translate(-50%, -78%); filter: drop-shadow(0 6px 6px rgba(0,0,0,.4)); pointer-events: none; }
+
+.chapters { margin-top: clamp(64px, 9vw, 110px); display: grid; gap: clamp(36px, 6vw, 70px); }
+.chapter { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.chapter:nth-child(even) .chapter-img { order: 2; }
+.chapter-img { position: relative; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 30px 60px rgba(0,0,0,.45); }
+.chapter-img img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 1.6s var(--ease); }
+.chapter:hover .chapter-img img { transform: scale(1.04); }
+.chapter-text { display: grid; gap: 12px; max-width: 32em; }
+.chapter-num { font-family: var(--f-hand); color: var(--chili-hi); font-size: 1.05rem; }
+.chapter-text h3 { font-size: clamp(1.4rem, 3vw, 2rem); color: var(--gold-hi); }
+.chapter-text p { color: var(--mist); }
+.promise { margin: clamp(64px, 9vw, 110px) auto 0; max-width: 820px; text-align: center; display: grid; gap: 14px; justify-items: center; }
+.promise img { width: 92px; }
+.promise blockquote { margin: 0; font-family: var(--f-display); font-size: clamp(1.25rem, 3vw, 1.9rem); line-height: 1.5; color: var(--cream); }
+.promise blockquote em { font-style: normal; font-family: var(--f-hand); color: var(--chili-hi); }
+
+/* ---------- taste ---------- */
+.taste { overflow: hidden; }
+.taste-bg { position: absolute; inset: 0; z-index: -1; }
+.taste-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .22; }
+.taste-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(var(--night), rgba(13,23,16,.6) 30%, rgba(13,23,16,.6) 70%, var(--night)); }
+.taste-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 60px); align-items: center; }
+.curve-box { border-radius: 22px; background: rgba(13,23,16,.7); box-shadow: inset 0 0 0 1px var(--line); padding: clamp(14px, 2.5vw, 26px); overflow-x: auto; }
+.curve-box svg { width: 100%; min-width: 480px; height: auto; display: block; }
+.curve-box .axis { stroke: rgba(244,234,211,.25); stroke-width: 1.5; }
+.curve-box .tick { fill: var(--faint); font-family: var(--f-body); font-size: 15px; }
+.curve-box .curve { fill: none; stroke-width: 4; stroke-linecap: round; transition: opacity .4s, stroke-width .4s; }
+.curve-box .area { transition: opacity .4s; opacity: .14; }
+.curve-box .peak { font-family: var(--f-display); font-size: 18px; transition: opacity .4s; }
+.curve-box.dim .curve, .curve-box.dim .area, .curve-box.dim .peak { opacity: .15; }
+.curve-box.dim .on .curve { opacity: 1; stroke-width: 6; }
+.curve-box.dim .on .area { opacity: .3; }
+.curve-box.dim .on .peak { opacity: 1; }
+.notes { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.notes button {
+  width: 100%; text-align: left; display: grid; grid-template-columns: 14px 64px 1fr; gap: 12px; align-items: baseline;
+  padding: 12px 14px; border-radius: 14px; border: 0; background: transparent; cursor: pointer; color: var(--mist);
+  transition: background .3s;
+}
+.notes button:hover, .notes button.on { background: rgba(244,234,211,.06); }
+.notes i { width: 12px; height: 12px; border-radius: 50%; transform: translateY(1px); }
+.notes b { font-family: var(--f-display); font-weight: 400; color: var(--cream); font-size: 1.1rem; }
+
+/* ---------- craft ---------- */
+.badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; font-size: .88rem; color: var(--gold-hi); box-shadow: inset 0 0 0 1px var(--line); background: rgba(214,174,92,.07); }
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--chili-hi); }
+.day { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
+.step { display: grid; gap: 10px; align-content: start; }
+.step figure { margin: 0; position: relative; border-radius: 18px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
+.step figure img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; transition: transform 1.2s var(--ease); }
+.step:hover figure img { transform: scale(1.06); }
+.step time { position: absolute; left: 10px; top: 10px; padding: 3px 10px; border-radius: 999px; background: rgba(13,23,16,.8); color: var(--gold-hi); font-size: .82rem; font-variant-numeric: tabular-nums; box-shadow: inset 0 0 0 1px var(--line); }
+.step h3 { font-size: 1.08rem; color: var(--cream); }
+.step p { font-size: .92rem; color: var(--mist); line-height: 1.6; }
+
+/* ---------- products ---------- */
+.shop-band { position: relative; height: clamp(180px, 26vw, 320px); border-radius: 24px; overflow: hidden; margin-bottom: clamp(36px, 5vw, 56px); box-shadow: 0 0 0 1px var(--line); }
+.shop-band img { width: 100%; height: 100%; object-fit: cover; }
+.shop-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(13,23,16,.92), rgba(13,23,16,.35) 60%, transparent); }
+.shop-band .section-head { position: absolute; z-index: 1; left: clamp(20px, 4vw, 48px); top: 50%; transform: translateY(-50%); margin: 0; max-width: min(520px, 80%); }
+.products { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.product { grid-column: span 2; display: grid; grid-template-rows: auto 1fr; border-radius: 20px; overflow: hidden; background: rgba(23,48,29,.6); box-shadow: inset 0 0 0 1px var(--line); transition: transform .5s var(--ease), box-shadow .5s; }
+.product:nth-child(4), .product:nth-child(5) { grid-column: span 3; }
+.product:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px var(--gold), 0 20px 40px rgba(0,0,0,.35); }
+.product-img { position: relative; }
+.product-img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.product:nth-child(4) .product-img img, .product:nth-child(5) .product-img img { aspect-ratio: 16 / 9; }
+.tag { position: absolute; left: 12px; top: 12px; padding: 3px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; background: var(--chili); color: var(--cream); }
+.product-body { padding: 18px 18px 20px; display: grid; gap: 10px; align-content: start; }
+.product-body h3 { font-size: 1.2rem; color: var(--gold-hi); }
+.product-body p { color: var(--mist); font-size: .94rem; line-height: 1.6; }
+.spice { display: inline-flex; align-items: center; gap: 3px; font-size: .8rem; color: var(--faint); }
+.spice img { height: 18px; width: auto; opacity: .22; }
+.spice img.on { opacity: 1; }
+.spice span { margin-left: 6px; }
+.buy { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.price { font-family: var(--f-body); font-weight: 700; font-size: 1.35rem; color: var(--cream); font-variant-numeric: tabular-nums; }
+.price small { font-family: var(--f-body); font-size: .8rem; color: var(--faint); margin-left: 4px; }
+.qty { display: inline-flex; align-items: center; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); }
+.qty button { width: 34px; height: 34px; border: 0; background: none; cursor: pointer; font-size: 1.1rem; color: var(--gold-hi); border-radius: 50%; }
+.qty button:hover { background: rgba(214,174,92,.12); }
+.qty output { min-width: 26px; text-align: center; font-variant-numeric: tabular-nums; }
+
+.quiz { margin-top: clamp(48px, 7vw, 80px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: clamp(24px, 4vw, 48px); align-items: center; padding: clamp(22px, 4vw, 44px); border-radius: 24px; background: linear-gradient(135deg, rgba(201,58,46,.18), rgba(23,48,29,.7)); box-shadow: inset 0 0 0 1px var(--line); }
+.quiz-intro { display: grid; gap: 12px; justify-items: start; }
+.quiz-intro img { width: 84px; }
+.quiz-intro h3 { font-size: clamp(1.4rem, 3vw, 2rem); color: var(--gold-hi); }
+.quiz-intro p { color: var(--mist); }
+.quiz-card { min-height: 250px; display: grid; gap: 14px; align-content: start; }
+.quiz-progress { font-size: .85rem; color: var(--faint); font-variant-numeric: tabular-nums; }
+.quiz-q { font-family: var(--f-display); font-size: 1.25rem; }
+.quiz-opts { display: grid; gap: 10px; }
+.quiz-opts button { text-align: left; padding: 13px 16px; border-radius: 14px; border: 0; cursor: pointer; background: rgba(13,23,16,.55); box-shadow: inset 0 0 0 1px var(--line); color: var(--cream); transition: background .3s, box-shadow .3s; }
+.quiz-opts button:hover { background: rgba(214,174,92,.12); box-shadow: inset 0 0 0 1px var(--gold); }
+.quiz-result { display: grid; grid-template-columns: 110px 1fr; gap: 16px; align-items: center; }
+.quiz-result img { width: 110px; height: 110px; object-fit: cover; border-radius: 16px; }
+.quiz-result h4 { margin: 0; font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; color: var(--gold-hi); }
+.quiz-result p { color: var(--mist); font-size: .95rem; }
+
+/* ---------- pairings ---------- */
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.plate { position: relative; aspect-ratio: 1; max-width: 520px; width: 100%; margin: 0 auto; border-radius: 50%; background: radial-gradient(circle, rgba(244,234,211,.1), rgba(244,234,211,.02) 62%, transparent 63%); box-shadow: inset 0 0 0 1px var(--line); }
+.plate .center { position: absolute; left: 50%; top: 50%; width: 46%; transform: translate(-50%, -52%); filter: drop-shadow(0 20px 30px rgba(0,0,0,.5)); }
+.side { position: absolute; width: 27%; aspect-ratio: 1; border: 0; padding: 0; background: none; cursor: pointer; border-radius: 50%; transition: transform .5s var(--ease); }
+.side img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 10px 14px rgba(0,0,0,.5)); }
+.side::after { content: ''; position: absolute; inset: -6%; border-radius: 50%; box-shadow: 0 0 0 2px transparent; transition: box-shadow .4s; }
+.side:hover { transform: scale(1.08); }
+.side.on::after { box-shadow: 0 0 0 2px var(--gold-hi), 0 0 30px rgba(241,213,140,.35); }
+.side.s1 { left: 4%; top: 6%; } .side.s2 { right: 4%; top: 6%; } .side.s3 { left: 4%; bottom: 4%; } .side.s4 { right: 4%; bottom: 4%; }
+.pair-info { display: grid; gap: 14px; }
+.pair-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.pair-tabs button { padding: 8px 16px; border-radius: 999px; border: 0; cursor: pointer; background: rgba(244,234,211,.06); box-shadow: inset 0 0 0 1px var(--line); color: var(--mist); }
+.pair-tabs button.on { background: var(--gold); color: var(--night); font-weight: 600; }
+.pair-card { padding: 22px; border-radius: 20px; background: rgba(23,48,29,.6); box-shadow: inset 0 0 0 1px var(--line); display: grid; gap: 8px; min-height: 150px; }
+.pair-card h3 { font-size: 1.4rem; color: var(--gold-hi); }
+.pair-card p { color: var(--mist); }
+
+/* ---------- hacks (flip cards) ---------- */
+.hacks { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.flip { perspective: 1000px; aspect-ratio: 3 / 4.2; border: 0; padding: 0; background: none; cursor: pointer; text-align: left; }
+.flip-inner { display: block; position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .8s var(--ease); }
+.flip.on .flip-inner { transform: rotateY(180deg); }
+.face { display: block; position: absolute; inset: 0; border-radius: 20px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: inset 0 0 0 1px var(--line); }
+.face.front img { width: 100%; height: 100%; object-fit: cover; }
+.face.front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,23,16,.95), transparent 55%); }
+.face.front .cap { display: grid; position: absolute; z-index: 1; left: 14px; right: 14px; bottom: 14px; display: grid; gap: 4px; }
+.face.front h3 { font-size: 1.05rem; color: var(--gold-hi); }
+.face.front small { color: var(--mist); font-size: .8rem; }
+.face.back { transform: rotateY(180deg); background: var(--forest); padding: 18px 16px; display: grid !important; align-content: start; gap: 10px; }
+.face.back h3 { font-size: 1.05rem; color: var(--gold-hi); }
+.face.back ol { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; color: var(--mist); font-size: .9rem; line-height: 1.55; }
+.face.back small { color: var(--faint); font-size: .78rem; margin-top: auto; }
+
+/* ---------- gift ---------- */
+.gift { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.gift-img { position: relative; }
+.gift-img > img { border-radius: 24px; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; box-shadow: 0 0 0 1px var(--line), 0 30px 60px rgba(0,0,0,.45); }
+.gift-img .heart { position: absolute; width: 110px; right: -16px; top: -30px; animation: bob 5s ease-in-out infinite; }
+.gift-text { display: grid; gap: 16px; justify-items: start; }
+.gift-text h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); color: var(--gold-hi); }
+.gift-text p { color: var(--mist); }
+.gift-text ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; color: var(--mist); }
+.gift-text li { display: flex; gap: 10px; align-items: baseline; }
+.gift-text li::before { content: ''; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); transform: translateY(-1px); }
+
+/* ---------- order ---------- */
+.order { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 36px); align-items: start; }
+.panel-box { border-radius: 22px; background: rgba(23,48,29,.65); box-shadow: inset 0 0 0 1px var(--line); padding: clamp(18px, 3vw, 30px); display: grid; gap: 16px; min-width: 0; }
+.panel-box h3 { font-size: 1.3rem; color: var(--gold-hi); display: flex; align-items: center; gap: 10px; }
+.panel-box h3 img { width: 40px; }
+.cart-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.cart-list li { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding-bottom: 10px; border-bottom: 1px dashed var(--line); }
+.cart-list img { width: 52px; height: 52px; border-radius: 12px; object-fit: cover; }
+.cart-list .nm { line-height: 1.35; }
+.cart-list .nm small { display: block; color: var(--faint); font-variant-numeric: tabular-nums; }
+.cart-empty { color: var(--faint); padding: 20px; text-align: center; border-radius: 14px; border: 1px dashed var(--line); display: grid; gap: 10px; justify-items: center; }
+.cart-empty img { width: 64px; opacity: .8; }
+.total { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.05rem; }
+.total b { font-family: var(--f-body); font-weight: 700; font-size: 1.5rem; color: var(--gold-hi); font-variant-numeric: tabular-nums; }
+.fine { font-size: .84rem; color: var(--faint); }
+.form { display: grid; gap: 12px; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: .88rem; color: var(--mist); }
+.field input, .field textarea {
+  width: 100%; padding: 11px 14px; border-radius: 12px; border: 0; background: rgba(13,23,16,.65);
+  box-shadow: inset 0 0 0 1px var(--line); color: var(--cream); font: inherit; font-size: 1rem;
+}
+.field input:focus, .field textarea:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--gold-hi); }
+.field textarea { min-height: 76px; resize: vertical; }
+.check { display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--cream); }
+.check input { width: 20px; height: 20px; accent-color: var(--chili); }
+.msg { white-space: pre-wrap; font-size: .9rem; line-height: 1.6; padding: 14px; border-radius: 14px; background: rgba(13,23,16,.75); box-shadow: inset 0 0 0 1px var(--line); color: var(--mist); max-height: 260px; overflow: auto; }
+.order-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.status { font-size: .9rem; color: var(--gold-hi); min-height: 1.4em; }
+.phone-big { font-family: var(--f-display); font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--cream); user-select: all; font-variant-numeric: tabular-nums; }
+.pack { display: grid; grid-template-columns: 120px 1fr; gap: 14px; align-items: center; }
+.pack img { width: 120px; height: 90px; object-fit: cover; border-radius: 12px; }
+
+/* ---------- faq ---------- */
+.faq { max-width: 820px; margin: 0 auto; display: grid; gap: 10px; }
+.faq details { border-radius: 16px; background: rgba(23,48,29,.55); box-shadow: inset 0 0 0 1px var(--line); }
+.faq summary { cursor: pointer; list-style: none; padding: 16px 20px; display: flex; justify-content: space-between; gap: 16px; font-weight: 600; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; color: var(--gold-hi); font-size: 1.3rem; line-height: 1; transition: transform .3s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding: 0 20px 18px; color: var(--mist); }
+
+/* ---------- contact ---------- */
+.contact { position: relative; overflow: hidden; }
+.contact-bg { position: absolute; inset: 0; z-index: -1; }
+.contact-bg img { width: 100%; height: 100%; object-fit: cover; }
+.contact-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(var(--night), rgba(13,23,16,.35) 30%, rgba(13,23,16,.55) 70%, var(--night)); }
+.contact-card { max-width: 560px; padding: clamp(22px, 4vw, 40px); border-radius: 24px; background: rgba(13,23,16,.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1px var(--line); display: grid; gap: 18px; }
+.contact-card h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--gold-hi); }
+.info { display: grid; gap: 14px; margin: 0; }
+.info div { display: grid; grid-template-columns: 90px 1fr; gap: 12px; }
+.info dt { color: var(--faint); font-size: .9rem; padding-top: 2px; }
+.info dd { margin: 0; color: var(--cream); }
+
+/* ---------- footer ---------- */
+.footer { position: relative; z-index: 2; padding: 56px var(--gutter) calc(110px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); display: grid; justify-items: center; gap: 18px; text-align: center; }
+.footer .emblem { width: 150px; }
+.footer nav { display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: center; font-size: .92rem; color: var(--mist); }
+.footer nav a:hover { color: var(--gold-hi); }
+.footer small { color: var(--faint); }
+
+/* ---------- floating bits ---------- */
+.fab { position: fixed; z-index: 50; right: var(--gutter); bottom: calc(22px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 10px; justify-items: end; }
+.fab a, .fab button { display: inline-flex; align-items: center; gap: 8px; border: 0; cursor: pointer; padding: 11px 18px; border-radius: 999px; font-weight: 600; box-shadow: 0 10px 24px rgba(0,0,0,.4); }
+.fab .f-cart { background: var(--gold); color: var(--night); }
+.fab .f-call { background: var(--chili); color: var(--cream); box-shadow: inset 0 0 0 1px rgba(241,213,140,.5), 0 10px 24px rgba(0,0,0,.4); }
+.fab .count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--chili); color: var(--cream); font-size: .8rem; font-variant-numeric: tabular-nums; }
+.toast { position: fixed; z-index: 70; left: 50%; bottom: calc(90px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); padding: 11px 20px; border-radius: 999px; background: var(--cream); color: var(--night); font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,.4); opacity: 0; pointer-events: none; transition: opacity .35s, transform .35s var(--ease); max-width: calc(100% - 32px); text-align: center; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- modal ---------- */
+.modal { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 20px; background: rgba(5,10,7,.8); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.modal-box { position: relative; width: min(860px, 100%); max-height: calc(100svh - 40px); overflow: auto; border-radius: 24px; background: var(--forest); box-shadow: inset 0 0 0 1px var(--gold), 0 30px 80px rgba(0,0,0,.6); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.modal-box > img { width: 100%; height: 100%; min-height: 320px; object-fit: cover; }
+.modal-body { padding: clamp(22px, 4vw, 40px); display: grid; gap: 14px; align-content: center; }
+.modal-body h3 { font-size: clamp(1.4rem, 3vw, 2rem); color: var(--gold-hi); }
+.modal-body p { color: var(--mist); }
+.modal-close { position: absolute; right: 12px; top: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer; background: rgba(13,23,16,.8); color: var(--cream); font-size: 1.4rem; box-shadow: inset 0 0 0 1px var(--line); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1180px) {
+  .nav-links, .nav-call { display: none; }
+  .menu-toggle { display: block; }
+  .hacks { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .day { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .legend, .route, .chapter, .taste-grid, .pair, .gift, .order, .quiz { grid-template-columns: minmax(0, 1fr); }
+  .chapter:nth-child(even) .chapter-img { order: 0; }
+  .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .product, .product:nth-child(4), .product:nth-child(5) { grid-column: span 1; }
+  .product:nth-child(5) { grid-column: span 2; }
+  .product:nth-child(4) .product-img img { aspect-ratio: 4 / 3; }
+  .modal-box { grid-template-columns: minmax(0, 1fr); }
+  .modal-box > img { min-height: 0; aspect-ratio: 4 / 3; }
+  .hero-controls { top: auto; right: auto; left: 50%; bottom: 0; transform: translateX(-50%); width: max-content; max-width: calc(100% - 32px); grid-template-columns: repeat(3, auto); justify-items: center; align-items: center; gap: 14px; padding: 10px 14px; }
+  .ctrl { flex-direction: column; gap: 4px; }
+  .drag-hint { display: none; }
+}
+@media (max-width: 720px) {
+  :root { --ring-radius: 180px; }
+  .hero { grid-template-rows: minmax(430px, 1fr) auto; min-height: 0; padding-top: 70px; }
+  .panel { width: 96px; height: 128px; margin: -64px 0 0 -48px; border-radius: 12px; }
+  .stage { padding-bottom: 70px; }
+  .panel::after { inset: 4px; border-radius: 10px; }
+  .panel-cap { left: 9px; right: 9px; bottom: 8px; font-size: .74rem; }
+  .panel-cap small { display: none; }
+  .core { width: 170px; margin: -85px 0 0 -85px; }
+  .ring-tilt { --tiltX: -12deg; }
+  .float-ing { display: none; }
+  .hero-copy { padding-bottom: 110px; }
+  .brand img { width: 42px; height: 42px; }
+  .brand-text small { display: none; }
+  .day { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .step { scroll-snap-align: start; }
+  .hacks { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 68%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .flip { scroll-snap-align: start; }
+  .products { grid-template-columns: minmax(0, 1fr); }
+  .product:nth-child(5) { grid-column: span 1; }
+  .shop-band::after { background: linear-gradient(90deg, rgba(13,23,16,.92), rgba(13,23,16,.6)); }
+  .quiz-result { grid-template-columns: 80px 1fr; }
+  .quiz-result img { width: 80px; height: 80px; }
+  .info div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .gift-img .heart { width: 80px; right: -4px; top: -24px; }
+  .fab { left: 16px; right: 16px; display: flex; gap: 10px; }
+  .fab a, .fab button { flex: 1; justify-content: center; padding: 9px 14px; font-size: .95rem; }
+  .pack { grid-template-columns: 90px 1fr; }
+  .pack img { width: 90px; height: 68px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aura, .core img, .steam i, .float-ing img, .river .w1, .river .w2, .sail, .sail img, .gift-img .heart, .loader img { animation: none !important; }
+  .sail { left: 8%; }
+  .lift.pending { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <img src="img/mark.webp" alt="">
+    <span>กำลังตำน้ำพริก…</span>
+  </div>
+</div>
+
+<canvas id="fireflies" aria-hidden="true"></canvas>
+<div class="aura" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#home" aria-label="บ้านสวน น้ำพริกลงเรือ หน้าแรก">
+    <img src="img/mark.webp" alt="">
+    <span class="brand-text"><b>บ้านสวน น้ำพริกลงเรือ</b><small>อร่อยเข้มข้น สูตรโฮมเมด</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home"><img src="img/ic-home.webp" alt="">หน้าแรก</a></li>
+    <li><a href="#story"><img src="img/ic-story.webp" alt="">เรื่องเล่า</a></li>
+    <li><a href="#products"><img src="img/ic-jar.webp" alt="">สินค้า</a></li>
+    <li><a href="#eat"><img src="img/ic-eat.webp" alt="">วิธีกิน</a></li>
+    <li><a href="#gift"><img src="img/ic-heart.webp" alt="">ของฝาก</a></li>
+    <li><a href="#order"><img src="img/ic-order.webp" alt="">สั่งซื้อ</a></li>
+    <li><a href="#contact"><img src="img/ic-contact.webp" alt="">ติดต่อ</a></li>
+  </ul>
+  <a class="nav-call" href="tel:0869857830">โทร 086-985-7830</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+</header>
+
+<nav class="mobile-menu" id="mobileMenu" aria-label="เมนู">
+  <ul>
+    <li><a href="#home"><img src="img/ic-home.webp" alt="">หน้าแรก</a></li>
+    <li><a href="#story"><img src="img/ic-story.webp" alt="">เรื่องเล่า</a></li>
+    <li><a href="#products"><img src="img/ic-jar.webp" alt="">สินค้า</a></li>
+    <li><a href="#eat"><img src="img/ic-eat.webp" alt="">วิธีกิน</a></li>
+    <li><a href="#gift"><img src="img/ic-heart.webp" alt="">ของฝาก</a></li>
+    <li><a href="#order"><img src="img/ic-order.webp" alt="">สั่งซื้อ</a></li>
+    <li><a href="#contact"><img src="img/ic-contact.webp" alt="">ติดต่อ</a></li>
+  </ul>
+</nav>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <picture class="hero-bg" aria-hidden="true">
+    <source media="(max-width: 720px)" srcset="img/night-m.webp">
+    <img src="img/night.webp" alt="">
+  </picture>
+
+  <div class="stage" id="stage" aria-label="ภาพบรรยากาศบ้านสวน ลากเพื่อหมุน">
+    <div class="float-ing fi-1" data-depth="1.4"><img src="img/chili.webp" alt=""></div>
+    <div class="float-ing fi-2" data-depth="1"><img src="img/garlic.webp" alt=""></div>
+    <div class="float-ing fi-3" data-depth="1.8"><img src="img/shallot.webp" alt=""></div>
+    <div class="float-ing fi-4" data-depth="1.2"><img src="img/crispy.webp" alt=""></div>
+    <div class="float-ing fi-5" data-depth="2.2"><img src="img/leaf.webp" alt=""></div>
+
+    <div class="parallax" id="parallax">
+      <div class="ring-tilt" id="ringTilt">
+        <div class="ring" id="ring"></div>
+      </div>
+      <div class="core">
+        <div class="steam" aria-hidden="true"><i></i><i></i><i></i></div>
+        <img src="img/mortar.webp" alt="ครกหินกับน้ำพริกลงเรือ">
+      </div>
+    </div>
+
+    <div class="hero-controls" id="heroControls">
+      <div class="ctrl">
+        <span class="ctrl-label">ระดับเผ็ด</span>
+        <div class="seg" id="spiceSeg" role="group" aria-label="ระดับความเผ็ดของบรรยากาศ">
+          <button type="button" data-level="1" aria-label="เผ็ดน้อย"><img src="img/chili.webp" alt=""></button>
+          <button type="button" data-level="2" class="is-active" aria-label="เผ็ดกลาง"><img src="img/chili.webp" alt=""></button>
+          <button type="button" data-level="3" aria-label="เผ็ดมาก"><img src="img/chili.webp" alt=""></button>
+        </div>
+      </div>
+      <div class="ctrl">
+        <span class="ctrl-label">ล่องเข้าใกล้</span>
+        <button type="button" class="switch" id="zoomSwitch" role="switch" aria-checked="false" aria-label="ซูมวงภาพ"><span class="knob"></span></button>
+      </div>
+      <div class="ctrl">
+        <span class="ctrl-label">วงคลื่น</span>
+        <div class="seg" id="spaceSeg" role="group" aria-label="ระยะห่างของภาพ">
+          <button type="button" data-space="0" aria-label="แคบ"><span class="dot"></span></button>
+          <button type="button" data-space="1" class="is-active" aria-label="ปกติ"><span class="dot"></span></button>
+          <button type="button" data-space="2" aria-label="กว้าง"><span class="dot"></span></button>
+        </div>
+      </div>
+      <span class="drag-hint">ลากเพื่อหมุน · แตะภาพเพื่อดูเรื่องราว</span>
+    </div>
+  </div>
+
+  <div class="hero-copy">
+    <span class="eyebrow">ริมแม่น้ำกก · เชียงราย</span>
+    <div class="plaque">
+      <h1><span class="t1">บ้านสวน</span><span class="t2">น้ำพริกลงเรือ</span></h1>
+    </div>
+    <p class="tagline">อร่อยเข้มข้น สูตรโฮมเมด</p>
+    <p class="hero-lead">น้ำพริกลงเรือทำมือจากบ้านสวนริมน้ำกก ใช้พริกจากสวน เจียวหอมกระเทียมทีละกระทะ และตำในครกหิน</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#products">เลือกสินค้า</a>
+      <a class="btn btn-ghost" href="#story">อ่านเรื่องของเรา</a>
+    </div>
+  </div>
+
+  <div class="river" aria-hidden="true">
+    <svg class="w1" viewBox="0 0 2400 120" preserveAspectRatio="none"><path d="M0 60 Q150 30 300 60 T600 60 T900 60 T1200 60 T1500 60 T1800 60 T2100 60 T2400 60 V120 H0Z" fill="rgba(32,64,42,.75)"/></svg>
+    <div class="sail"><img src="img/boat.webp" alt=""></div>
+    <svg class="w2" viewBox="0 0 2400 120" preserveAspectRatio="none"><path d="M0 80 Q200 55 400 80 T800 80 T1200 80 T1600 80 T2000 80 T2400 80 V120 H0Z" fill="#0d1710"/><path d="M0 80 Q200 55 400 80 T800 80 T1200 80 T1600 80 T2000 80 T2400 80" fill="none" stroke="rgba(214,174,92,.35)" stroke-width="2"/></svg>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="section patterned" id="story">
+  <div class="wrap">
+    <div class="section-head center lift">
+      <span class="eyebrow">เรื่องเล่าของบ้านสวน</span>
+      <h2>จากสายน้ำเจ้าพระยา ถึงครกหินริมน้ำกก</h2>
+      <p>น้ำพริกลงเรือเกิดมาเพื่อแบ่งกันกินในวันสนุก กว่าร้อยปีต่อมา มันล่องมาถึงบ้านสวนของเรา</p>
+    </div>
+
+    <div class="legend lift">
+      <div class="legend-img"><img src="img/legend.webp" alt="ภาพวาดงานล่องเรือในสวนริมน้ำสมัยก่อน" loading="lazy"></div>
+      <div class="legend-text">
+        <h3>ตำนานงานล่องเรือ</h3>
+        <p>เล่ากันว่าเมื่อกว่าร้อยปีก่อน ในวังสวนสุนันทา ระหว่างงานล่องเรือเล่นน้ำ ห้องเครื่องเหลือเพียงน้ำพริกกะปิกับหมูหวาน แม่ครัวจึงคลุกทั้งสองอย่างเข้าด้วยกัน กลายเป็นเมนูที่ทุกคนบนเรือติดใจ และได้ชื่อว่า <b>“น้ำพริกลงเรือ”</b></p>
+        <p>สูตรนี้ล่องผ่านกาลเวลาและครัวมาหลายบ้าน จนมาถึงบ้านสวนริมแม่น้ำกก ที่นี่เราเติมเสน่ห์แบบเหนือลงไป ใช้พริกที่ปลูกเอง หอมแดงและกระเทียมเจียวทีละกระทะ แล้วเคี่ยวให้เข้มข้นขึ้น</p>
+        <p class="note">ภาพประกอบเป็นภาพวาดเชิงจินตนาการ</p>
+      </div>
+    </div>
+
+    <div class="route">
+      <div class="route-text lift">
+        <h3>ล่องเรือมาไกล เพื่อมาอยู่บนโต๊ะของคุณ</h3>
+        <p>เลื่อนหน้าจอลงเพื่อดูเรือลำเล็กล่องจากกรุงเทพฯ ขึ้นมาถึงเชียงราย ตามเส้นทางของสูตรน้ำพริกจานนี้</p>
+        <ul class="route-stops">
+          <li><span><b>กรุงเทพฯ</b> ต้นตำรับในงานล่องเรือ</span></li>
+          <li><span><b>ครัวหลายบ้าน</b> สูตรถูกส่งต่อและปรับรสตามมือคนทำ</span></li>
+          <li><span><b>ริมกก เชียงราย</b> บ้านสวนของเรา พริกสวน ครกหิน ไฟอ่อน</span></li>
+        </ul>
+      </div>
+      <div class="map lift" id="map">
+        <img class="map-base" src="img/map.webp" alt="แผนที่ภาพวาดประเทศไทย แสดงเส้นทางจากกรุงเทพฯ ถึงเชียงราย" loading="lazy">
+        <svg viewBox="0 0 1200 900" aria-hidden="true">
+          <path class="path-bg" d="M560 440 C 572 395, 590 340, 586 290 S 556 210, 540 170 S 512 118, 528 96"/>
+          <path class="path-fg" id="routePath" d="M560 440 C 572 395, 590 340, 586 290 S 556 210, 540 170 S 512 118, 528 96"/>
+          <circle class="city" cx="560" cy="440" r="11"/>
+          <circle class="city" cx="528" cy="96" r="11"/>
+          <text class="city-label" x="600" y="452">กรุงเทพฯ</text>
+          <text class="city-label" x="612" y="104">เชียงราย</text>
+        </svg>
+        <img class="map-boat" id="mapBoat" src="img/boat.webp" alt="">
+      </div>
+    </div>
+
+    <div class="chapters">
+      <article class="chapter lift">
+        <div class="chapter-img"><img src="img/office.webp" alt="โต๊ะทำงานยามค่ำ มีกระปุกน้ำพริกวางข้างกล่องข้าว" loading="lazy"></div>
+        <div class="chapter-text">
+          <span class="chapter-num">บทที่ 1</span>
+          <h3>ไกลบ้าน</h3>
+          <p>หลายปีที่ทำงานในกรุงเทพฯ อาหารที่คิดถึงที่สุดไม่ใช่ร้านดังร้านไหน แต่คือน้ำพริกลงเรือกระปุกที่บ้านส่งมาให้ เปิดฝาทีไร กลิ่นหอมเจียวก็พาใจกลับบ้านสวนทุกครั้ง</p>
+          <p>เพื่อนร่วมงานแอบชิมแล้วขอซื้อต่อ หนึ่งกระปุกกลายเป็นสิบ สิบกลายเป็นร้อย</p>
+        </div>
+      </article>
+      <article class="chapter lift">
+        <div class="chapter-img"><img src="img/bus.webp" alt="วิวภูเขาและหมอกยามเช้าจากหน้าต่างรถ" loading="lazy"></div>
+        <div class="chapter-text">
+          <span class="chapter-num">บทที่ 2</span>
+          <h3>กลับบ้าน</h3>
+          <p>วันหนึ่งเราตัดสินใจขึ้นรถกลับเชียงราย ทิ้งตึกสูงไว้ข้างหลัง แล้วตามหมอกยามเช้าขึ้นไปหาบ้านสวนหลังเดิมริมแม่น้ำกก</p>
+        </div>
+      </article>
+      <article class="chapter lift">
+        <div class="chapter-img"><img src="img/kitchen.webp" alt="คนรุ่นใหม่ตำน้ำพริกในครัวบ้านสวน" loading="lazy"></div>
+        <div class="chapter-text">
+          <span class="chapter-num">บทที่ 3</span>
+          <h3>สานต่อ</h3>
+          <p>เราเรียนสูตรจากคนในครอบครัว ตำทุกครกด้วยมือตัวเอง แล้วแต่งตัวน้ำพริกบ้านๆ ให้ส่งไปถึงทุกคนที่คิดถึงรสมือบ้าน เหมือนที่เราเคยคิดถึง</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="promise lift">
+      <img src="img/emblem.webp" alt="ตราบ้านสวน น้ำพริกลงเรือ" loading="lazy">
+      <blockquote><em>“อร่อยเข้มข้น สูตรโฮมเมด”</em> ไม่ใช่แค่คำโปรย แต่คือกลิ่นบ้านที่เราใส่กระปุกส่งไปให้คุณ</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TASTE ============ -->
+<section class="section taste" id="taste">
+  <div class="taste-bg" aria-hidden="true"><img src="img/p02.webp" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <div class="section-head lift">
+      <span class="eyebrow">รสชาติ</span>
+      <h2>เผ็ดแบบมีจังหวะ</h2>
+      <p>น้ำพริกที่ดีไม่ได้เผ็ดทีเดียวจบ ในหนึ่งคำ รสจะมาทีละชั้น และยังหอมค้างอยู่ในปากหลังกลืน แตะชื่อรสเพื่อดูว่ามันมาตอนไหน</p>
+    </div>
+    <div class="taste-grid lift">
+      <div class="curve-box" id="curveBox">
+        <svg viewBox="0 0 640 320" role="img" aria-label="ลำดับรสในหนึ่งคำ หวานมาก่อน ตามด้วยเค็ม เปรี้ยว เผ็ด และหอมค้างหลังกลืน">
+          <line class="axis" x1="40" y1="270" x2="620" y2="270"/>
+          <g id="curves"></g>
+          <text class="tick" x="40" y="298">คำแรก</text>
+          <text class="tick" x="210" y="298">เคี้ยว</text>
+          <text class="tick" x="380" y="298">กลืน</text>
+          <text class="tick" x="540" y="298">หลังกลืน</text>
+        </svg>
+      </div>
+      <ul class="notes" id="notes"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CRAFT ============ -->
+<section class="section" id="craft">
+  <div class="wrap">
+    <div class="section-head lift">
+      <span class="eyebrow">หนึ่งวันในครัวบ้านสวน</span>
+      <h2>ทำทีละหม้อ ไม่ใช่ทีละพันขวด</h2>
+      <p>วันหนึ่งเราเคี่ยวได้ไม่กี่หม้อ เพราะทุกขั้นตอนใช้มือคน ช้ากว่า แต่หอมกว่า</p>
+      <div class="badges">
+        <span class="badge">ทำมือทุกขั้นตอน</span>
+        <span class="badge">ตำครกหิน</span>
+        <span class="badge">พริกจากสวน</span>
+        <span class="badge">เคี่ยวไฟอ่อน</span>
+      </div>
+    </div>
+    <ol class="day lift">
+      <li class="step">
+        <figure><img src="img/p08.webp" alt="มือเก็บพริกสดใส่ตะกร้า" loading="lazy"><time>06:00</time></figure>
+        <h3>เก็บพริกจากสวน</h3>
+        <p>เลือกเม็ดที่สุกแดงกำลังดี ตอนน้ำค้างยังไม่แห้ง</p>
+      </li>
+      <li class="step">
+        <figure><img src="img/p05.webp" alt="เจียวหอมแดงในกระทะจนเหลืองทอง" loading="lazy"><time>08:00</time></figure>
+        <h3>เจียวหอมกระเทียม</h3>
+        <p>เจียวทีละกระทะจนเหลืองทอง กลิ่นหอมลอยไปทั้งบ้าน</p>
+      </li>
+      <li class="step">
+        <figure><img src="img/p03.webp" alt="ตำน้ำพริกในครกหิน" loading="lazy"><time>10:00</time></figure>
+        <h3>ตำครกหิน</h3>
+        <p>ไม่ใช้เครื่องปั่น น้ำพริกจึงมีเนื้อ และน้ำมันหอมออกมาเต็มที่</p>
+      </li>
+      <li class="step">
+        <figure><img src="img/simmer.webp" alt="เคี่ยวน้ำพริกในกระทะทองเหลืองบนเตาถ่าน" loading="lazy"><time>13:00</time></figure>
+        <h3>เคี่ยวไฟอ่อน</h3>
+        <p>คนช้าๆ บนเตาถ่าน ให้หวาน เค็ม เปรี้ยว เผ็ด เข้ากันพอดี</p>
+      </li>
+      <li class="step">
+        <figure><img src="img/label.webp" alt="มือเขียนฉลากบนกระปุกน้ำพริก" loading="lazy"><time>16:00</time></figure>
+        <h3>บรรจุและเขียนวันที่</h3>
+        <p>ทุกกระปุกเขียนเลขล็อตและวันที่ผลิตด้วยมือ</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="section patterned" id="products">
+  <div class="wrap">
+    <div class="shop-band lift">
+      <img src="img/field.webp" alt="สวนพริกยามเช้าหน้าบ้านไม้" loading="lazy">
+      <div class="section-head">
+        <span class="eyebrow">สินค้า</span>
+        <h2>เลือกความเผ็ดที่ใช่</h2>
+        <p>ทุกสูตรทำจากครัวเดียวกัน ต่างกันที่ปริมาณพริกสวน</p>
+      </div>
+    </div>
+    <div class="products" id="productGrid"></div>
+
+    <div class="quiz lift" id="quiz">
+      <div class="quiz-intro">
+        <img src="img/ic-heart.webp" alt="">
+        <h3>คุณเป็นสายเผ็ดระดับไหน</h3>
+        <p>ตอบ 3 ข้อ เราจะแนะนำสูตรที่เหมาะกับคุณ</p>
+      </div>
+      <div class="quiz-card" id="quizCard" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAIRINGS ============ -->
+<section class="section" id="pair">
+  <div class="wrap pair">
+    <div class="plate lift" id="plate">
+      <img class="center" src="img/mortar.webp" alt="ครกน้ำพริกลงเรือ" loading="lazy">
+      <button type="button" class="side s1 on" data-pair="0" aria-label="หมูหวาน"><img src="img/pork.webp" alt=""></button>
+      <button type="button" class="side s2" data-pair="1" aria-label="ไข่เค็ม"><img src="img/egg.webp" alt=""></button>
+      <button type="button" class="side s3" data-pair="2" aria-label="ปลาดุกฟู"><img src="img/catfish.webp" alt=""></button>
+      <button type="button" class="side s4" data-pair="3" aria-label="ผักสด"><img src="img/leaf.webp" alt=""></button>
+    </div>
+    <div class="pair-info lift">
+      <div class="section-head" style="margin:0">
+        <span class="eyebrow">สำรับลงเรือ</span>
+        <h2>กินคู่กับอะไรดี</h2>
+        <p>แตะเครื่องเคียงรอบครก เพื่อดูว่ากินคู่กันแล้วอร่อยอย่างไร</p>
+      </div>
+      <div class="pair-tabs" id="pairTabs"></div>
+      <div class="pair-card" id="pairCard" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HACKS ============ -->
+<section class="section patterned" id="eat">
+  <div class="wrap">
+    <div class="section-head lift">
+      <span class="eyebrow">วิธีกิน</span>
+      <h2>หนึ่งกระปุก กินได้ร้อยแบบ</h2>
+      <p>สูตรดั้งเดิมยังอยู่ครบ เราแค่ชวนคุณเล่นกับมัน แตะการ์ดเพื่อดูวิธีทำ</p>
+    </div>
+    <div class="hacks lift" id="hacks"></div>
+  </div>
+</section>
+
+<!-- ============ GIFT ============ -->
+<section class="section" id="gift">
+  <div class="wrap gift">
+    <div class="gift-img lift">
+      <img src="img/gift.webp" alt="ยื่นตะกร้าของฝากน้ำพริกห่อผ้าทอให้ผู้ใหญ่" loading="lazy">
+      <img class="heart" src="img/ic-heart.webp" alt="">
+    </div>
+    <div class="gift-text lift">
+      <span class="eyebrow">ของฝาก</span>
+      <h2>ส่งกลิ่นบ้าน ให้คนที่คุณคิดถึง</h2>
+      <p>กล่องของฝาก 3 กระปุก 3 ระดับความเผ็ด ห่อผ้าทอในตะกร้าหวาย เหมาะส่งให้พ่อแม่ เพื่อน หรือใครที่อยู่ไกลบ้าน</p>
+      <ul>
+        <li>เลือกส่งตรงถึงผู้รับได้</li>
+        <li>เขียนข้อความถึงผู้รับไว้ในคำสั่งซื้อ</li>
+        <li>เหมาะเป็นของฝากจากเชียงราย</li>
+      </ul>
+      <button type="button" class="btn btn-primary" id="giftBtn">เลือกกล่องของฝาก</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORDER ============ -->
+<section class="section patterned" id="order">
+  <div class="wrap">
+    <div class="section-head center lift">
+      <span class="eyebrow">สั่งซื้อ</span>
+      <h2>สั่งง่ายใน 3 ขั้น</h2>
+      <p>เลือกสินค้า กรอกที่อยู่ แล้วคัดลอกข้อความสั่งซื้อส่งให้ร้าน หรือโทรสั่งได้เลย</p>
+    </div>
+    <div class="order">
+      <div class="panel-box lift">
+        <h3><img src="img/ic-order.webp" alt="">ตะกร้าของคุณ</h3>
+        <div id="cartWrap"></div>
+        <div class="total"><span>ยอดรวมสินค้า</span><b id="cartTotal">฿0</b></div>
+        <p class="fine">ค่าจัดส่งร้านจะแจ้งเมื่อยืนยันคำสั่งซื้อ</p>
+        <div class="pack">
+          <img src="img/packing.webp" alt="แพ็กกระปุกน้ำพริกลงกล่อง" loading="lazy">
+          <p class="fine">ห่อกระปุกด้วยใบตองและบับเบิลกันกระแทก ก่อนส่งทุกครั้ง</p>
+        </div>
+      </div>
+      <form class="panel-box form lift" id="orderForm" novalidate>
+        <h3>ข้อมูลจัดส่ง</h3>
+        <div class="field"><label for="oName">ชื่อผู้รับ</label><input id="oName" name="name" autocomplete="name" placeholder="เช่น สมใจ ใจดี"></div>
+        <div class="field"><label for="oPhone">เบอร์โทร</label><input id="oPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="08x-xxx-xxxx"></div>
+        <div class="field"><label for="oAddr">ที่อยู่จัดส่ง</label><textarea id="oAddr" name="addr" autocomplete="street-address" placeholder="บ้านเลขที่ ถนน ตำบล อำเภอ จังหวัด รหัสไปรษณีย์"></textarea></div>
+        <label class="check" for="oGift"><input type="checkbox" id="oGift" name="gift"> ส่งเป็นของขวัญ</label>
+        <div class="field" id="giftNoteField" hidden><label for="oNote">ข้อความถึงผู้รับ</label><textarea id="oNote" name="note" placeholder="เช่น คิดถึงแม่นะ"></textarea></div>
+        <div class="field"><label for="msgPreview">ข้อความสั่งซื้อ</label><div class="msg" id="msgPreview" tabindex="0"></div></div>
+        <div class="order-actions">
+          <button type="submit" class="btn btn-primary">คัดลอกข้อความสั่งซื้อ</button>
+          <a class="btn btn-ghost" href="tel:0869857830">โทรสั่ง</a>
+          <a class="btn btn-ghost" id="lineBtn" href="#" target="_blank" rel="noopener" hidden>ส่งทาง LINE</a>
+        </div>
+        <p class="status" id="orderStatus" aria-live="polite"></p>
+        <p class="fine">หรือโทรสั่ง <span class="phone-big">086-985-7830</span></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head center lift">
+      <span class="eyebrow">คำถามที่พบบ่อย</span>
+      <h2>สงสัยตรงไหน ถามได้</h2>
+    </div>
+    <div class="faq lift">
+      <details open>
+        <summary>น้ำพริกลงเรือต่างจากน้ำพริกกะปิอย่างไร</summary>
+        <p>น้ำพริกลงเรือคือน้ำพริกกะปิที่ผัดกับหมูหวาน หอมเจียว และกระเทียมเจียว รสจึงหวานเค็มกลมกล่อมกว่า และมักกินคู่กับไข่เค็ม ปลาดุกฟู และผักสด</p>
+      </details>
+      <details>
+        <summary>เด็กหรือคนไม่กินเผ็ดทานได้ไหม</summary>
+        <p>ได้ เลือกสูตรเผ็ดน้อย ที่หวานนำและเผ็ดเบาๆ หรือลองทำแบบทดสอบในส่วนสินค้าเพื่อหาสูตรที่เหมาะ</p>
+      </details>
+      <details>
+        <summary>เก็บรักษาอย่างไรให้อร่อยนาน</summary>
+        <p>ปิดฝาให้สนิท เมื่อเปิดแล้วเก็บในตู้เย็น และใช้ช้อนที่แห้งสะอาดตักทุกครั้ง</p>
+      </details>
+      <details>
+        <summary>ส่งต่างจังหวัดได้ไหม ค่าส่งเท่าไร</summary>
+        <p>โทรสอบถามได้ที่ 086-985-7830 ร้านจะแจ้งค่าจัดส่งตามที่อยู่และจำนวนสินค้าเมื่อยืนยันคำสั่งซื้อ</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="contact-bg" aria-hidden="true"><img src="img/river-dusk.webp" alt="" loading="lazy"></div>
+  <div class="wrap">
+    <div class="contact-card lift">
+      <span class="eyebrow" style="justify-self:start">ติดต่อ</span>
+      <h2>แวะมาที่บ้านสวน</h2>
+      <dl class="info">
+        <div><dt>ที่อยู่</dt><dd>251 ม.4 ต.ริมกก อ.เมืองเชียงราย จ.เชียงราย</dd></div>
+        <div><dt>โทร</dt><dd><span class="phone-big">086-985-7830</span></dd></div>
+      </dl>
+      <div class="btn-row" style="justify-content:flex-start">
+        <a class="btn btn-primary" href="tel:0869857830">โทรหาเรา</a>
+        <button type="button" class="btn btn-ghost" id="copyPhone">คัดลอกเบอร์</button>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=251%20%E0%B8%A1.4%20%E0%B8%95.%E0%B8%A3%E0%B8%B4%E0%B8%A1%E0%B8%81%E0%B8%81%20%E0%B8%AD.%E0%B9%80%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%87%E0%B9%80%E0%B8%8A%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%A3%E0%B8%B2%E0%B8%A2" target="_blank" rel="noopener">เปิดแผนที่</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <img class="emblem" src="img/emblem.webp" alt="ตราบ้านสวน น้ำพริกลงเรือ" loading="lazy">
+  <p class="tagline" style="font-size:1.4rem">อร่อยเข้มข้น สูตรโฮมเมด</p>
+  <nav aria-label="ลิงก์ท้ายเว็บ">
+    <a href="#story">เรื่องเล่า</a><a href="#taste">รสชาติ</a><a href="#craft">การทำ</a><a href="#products">สินค้า</a><a href="#eat">วิธีกิน</a><a href="#gift">ของฝาก</a><a href="#order">สั่งซื้อ</a><a href="#faq">คำถาม</a><a href="#contact">ติดต่อ</a>
+  </nav>
+  <small>© 2569 บ้านสวน น้ำพริกลงเรือ · 251 ม.4 ต.ริมกก อ.เมืองเชียงราย จ.เชียงราย · โทร 086-985-7830</small>
+</footer>
+
+<div class="fab" id="fab">
+  <a class="f-call" href="tel:0869857830">โทรสั่ง</a>
+  <button type="button" class="f-cart" id="fabCart">ตะกร้า <span class="count" id="cartCount">0</span></button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button type="button" class="modal-close" id="modalClose" aria-label="ปิด">×</button>
+    <img id="modalImg" src="" alt="">
+    <div class="modal-body">
+      <span class="eyebrow" id="modalTag" style="justify-self:start"></span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+      <div class="btn-row" style="justify-content:flex-start"><a class="btn btn-primary btn-sm" href="#products" id="modalCta">ดูสินค้า</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  /* ===== ร้านแก้ข้อมูลตรงนี้ได้ ===== */
+  var SHOP = {
+    phone: '086-985-7830',
+    lineUrl: ''   /* ใส่ลิงก์ LINE เช่น https://line.me/R/ti/p/@yourshop แล้วปุ่ม "ส่งทาง LINE" จะแสดงเอง */
+  };
+  var PRODUCTS = [
+    { id: 'original', name: 'น้ำพริกลงเรือ สูตรต้นตำรับ', short: 'สูตรต้นตำรับ', img: 'img/p01.webp', spice: 2, size: '200 กรัม', price: 120, tag: 'ขายดี',
+      desc: 'ครบสี่รส หวาน เค็ม เปรี้ยว เผ็ด เผ็ดกำลังดี สูตรที่ทำมาตั้งแต่วันแรก' },
+    { id: 'mild', name: 'สูตรเผ็ดน้อย', short: 'สูตรเผ็ดน้อย', img: 'img/label.webp', spice: 1, size: '200 กรัม', price: 120,
+      desc: 'หวานนำ เผ็ดเบาๆ เด็กและคนไม่กินเผ็ดก็ทานได้' },
+    { id: 'hot', name: 'สูตรเผ็ดจี๊ด', short: 'สูตรเผ็ดจี๊ด', img: 'img/simmer.webp', spice: 3, size: '200 กรัม', price: 130,
+      desc: 'เพิ่มพริกสวนอีกเท่าตัว สำหรับสายเผ็ดที่ชอบให้ร้อนถึงใจ' },
+    { id: 'set', name: 'ชุดพร้อมกิน', short: 'ชุดพร้อมกิน', img: 'img/p02.webp', spice: 2, size: 'น้ำพริก + หมูหวาน + ไข่เค็ม', price: 249, tag: 'คุ้ม',
+      desc: 'น้ำพริกลงเรือ หมูหวาน และไข่เค็ม เปิดแล้วกินกับข้าวสวยได้ทันที' },
+    { id: 'gift', name: 'กล่องของฝาก ห่อผ้าทอ', short: 'กล่องของฝาก', img: 'img/p09.webp', spice: 0, size: '3 กระปุก 3 ระดับความเผ็ด', price: 390, tag: 'ของฝาก',
+      desc: 'สามสูตรในตะกร้าหวาย ห่อผ้าทอ พร้อมส่งเป็นของขวัญ' }
+  ];
+  var PANELS = [
+    { img: 'p01', t: 'กระปุกแรกของวัน', s: 'สูตรต้นตำรับ', tag: 'สินค้า', d: 'น้ำพริกลงเรือเนื้อแน่น มันวาว หอมเจียวเต็มกระปุก ทำเสร็จวันไหน เขียนวันที่ไว้บนฉลาก' },
+    { img: 'p02', t: 'สำรับลงเรือ', s: 'หมูหวาน ไข่เค็ม ปลาดุกฟู', tag: 'วิธีกิน', d: 'จัดสำรับแบบดั้งเดิม น้ำพริกตรงกลาง รายล้อมด้วยหมูหวาน ไข่เค็ม ปลาดุกฟู และผักสดจากสวน' },
+    { img: 'p03', t: 'ตำครกหิน', s: 'ไม่ใช้เครื่องปั่น', tag: 'การทำ', d: 'ตำด้วยมือในครกหิน เนื้อน้ำพริกจึงมีเนื้อสัมผัส และน้ำมันหอมจากพริกกับกระเทียมออกมาเต็มที่' },
+    { img: 'p04', t: 'วัตถุดิบ', s: 'พริก กะปิ หอม กระเทียม', tag: 'การทำ', d: 'พริกแห้ง กะปิ หอมแดง กระเทียม น้ำตาลมะพร้าว มะนาว และมะดัน คัดทีละอย่างก่อนลงกระทะ' },
+    { img: 'p05', t: 'เจียวหอม', s: 'ทีละกระทะ', tag: 'การทำ', d: 'เจียวหอมแดงและกระเทียมทีละกระทะจนเหลืองทอง ความหอมนี้คือสิ่งที่ค้างอยู่ในปากหลังกลืน' },
+    { img: 'p06', t: 'แม่น้ำกกยามเช้า', s: 'ริมกก เชียงราย', tag: 'เรื่องเล่า', d: 'บ้านสวนของเราอยู่ริมแม่น้ำกก หมอกยามเช้าและเรือหางยาวคือวิวที่เราเห็นทุกวันก่อนเริ่มงาน' },
+    { img: 'p07', t: 'บ้านสวน', s: 'ครัวของเรา', tag: 'เรื่องเล่า', d: 'บ้านไม้หลังเดิมกลางสวนมะม่วงและแปลงพริก ทุกกระปุกทำที่นี่' },
+    { img: 'p08', t: 'พริกจากสวน', s: 'เก็บตอนเช้า', tag: 'การทำ', d: 'เก็บพริกตอนน้ำค้างยังไม่แห้ง เลือกเม็ดที่สุกแดงกำลังดี' },
+    { img: 'p09', t: 'ของฝากผ้าทอ', s: 'กล่อง 3 กระปุก', tag: 'ของฝาก', d: 'สามสูตรในตะกร้าหวาย ห่อผ้าทอ พร้อมส่งให้คนที่คุณคิดถึง' },
+    { img: 'p10', t: 'วงข้าวครอบครัว', s: 'อาหารแห่งการรวมตัว', tag: 'เรื่องเล่า', d: 'น้ำพริกลงเรือเกิดมาเพื่อแบ่งกันกิน จะเป็นวงข้าวครอบครัว ปาร์ตี้เพื่อน หรือมื้อเที่ยงที่ทำงานก็ได้' }
+  ];
+  var FLAVORS = [
+    { k: 'หวาน', c: '#f1d58c', peak: 120, w: 70, h: 150, d: 'น้ำตาลมะพร้าวเคี่ยว ละมุนตั้งแต่คำแรก' },
+    { k: 'เค็ม', c: '#c79a63', peak: 210, w: 75, h: 170, d: 'กะปิอย่างดี เค็มกลมกล่อม' },
+    { k: 'เปรี้ยว', c: '#9cc464', peak: 290, w: 60, h: 130, d: 'มะนาวสด ตัดรสให้สดชื่น' },
+    { k: 'เผ็ด', c: '#e8553f', peak: 400, w: 95, h: 210, d: 'พริกจากสวน ค่อยๆ ไต่ขึ้น ไม่กระชาก' },
+    { k: 'หอม', c: '#e39a3b', peak: 535, w: 110, h: 140, d: 'หอมเจียวกับกระเทียมทอง อบอวลหลังกลืน' }
+  ];
+  var PAIRS = [
+    { k: 'หมูหวาน', d: 'หวานเค็มตัดเผ็ด เป็นคู่ดั้งเดิมของน้ำพริกลงเรือ คลุกรวมกันในจานเดียวยิ่งอร่อย' },
+    { k: 'ไข่เค็ม', d: 'ไข่แดงมันๆ ช่วยให้รสนุ่มขึ้น ตักไข่แดงกับน้ำพริกคำเดียวกันกับข้าวสวยร้อนๆ' },
+    { k: 'ปลาดุกฟู', d: 'กรอบฟู กินเคียงกับน้ำพริก ได้เนื้อสัมผัสตัดกันในทุกคำ' },
+    { k: 'ผักสด', d: 'แตงกวา ถั่วฝักยาว มะเขือเปราะ ช่วยให้ทุกคำสดชื่นและกินได้เรื่อยๆ' }
+  ];
+  var HACKS = [
+    { img: 'eat-egg', t: 'ข้าวไข่ดาวน้ำพริก', s: 'มื้อเร็วที่สุดในโลก', steps: ['ทอดไข่ดาวให้ขอบกรอบ', 'ตักน้ำพริก 1 ช้อนบนข้าวสวยร้อน', 'วางไข่ เจาะไข่แดง แล้วคลุก'] },
+    { img: 'eat-pasta', t: 'สปาเกตตี้น้ำพริกลงเรือ', s: 'พาสต้าไทยใน 10 นาที', steps: ['ต้มเส้นตามเวลาบนซอง', 'ผัดน้ำพริก 2 ช้อนกับน้ำมันเล็กน้อย', 'คลุกเส้น โรยหอมเจียวและใบโหระพา'] },
+    { img: 'eat-toast', t: 'ขนมปังชีสน้ำพริก', s: 'มื้อเช้าหรือมื้อดึกก็ได้', steps: ['ทาน้ำพริกบางๆ บนขนมปัง', 'โรยชีส อบหรือปิ้งจนละลาย', 'โรยต้นหอมซอย'] },
+    { img: 'eat-noodle', t: 'บะหมี่อัปเกรด', s: 'จากซองธรรมดาเป็นเมนูร้าน', steps: ['ต้มบะหมี่ ใส่เครื่องปรุงครึ่งซอง', 'เติมน้ำพริก 1 ช้อน', 'ใส่ไข่ยางมะตูม หมูหวาน ผักลวก'] },
+    { img: 'eat-salad', t: 'สลัดน้ำพริก', s: 'สลัดไทยฟิวชัน', steps: ['ผสมน้ำพริก 1 ช้อน มะนาว และน้ำมันมะกอก', 'ราดผักสลัด มะเขือเทศ หอมแดง', 'โรยหอมเจียวก่อนเสิร์ฟ'] }
+  ];
+  var QUIZ = [
+    { q: 'สั่งส้มตำ คุณใส่พริกกี่เม็ด', o: ['ไม่ใส่ หรือ 1 เม็ด', '2 ถึง 4 เม็ด', '5 เม็ดขึ้นไป'] },
+    { q: 'กินเผ็ดจนน้ำตาซึม คุณจะ', o: ['พอแล้ว ขอน้ำเย็น', 'ดื่มน้ำแล้วกินต่อ', 'ขอพริกเพิ่มอีก'] },
+    { q: 'ซื้อไปกินกับใคร', o: ['เด็กๆ ในบ้าน', 'ตัวเองกับครอบครัว', 'เพื่อนสายเผ็ด'] }
+  ];
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var baht = function (n) { return '฿' + n.toLocaleString('th-TH'); };
+  function el(tag, attrs, html) { var e = document.createElement(tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (html != null) e.innerHTML = html; return e; }
+  function toast(msg) { var t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(function () { t.classList.remove('show'); }, 2200); }
+
+  /* ---------- loader ---------- */
+  var loader = $('#loader');
+  setTimeout(function () { loader.classList.add('done'); }, reduceMotion ? 0 : 1450);
+
+  /* ---------- nav ---------- */
+  var nav = $('#nav');
+  function onScrollNav() { nav.classList.toggle('scrolled', window.scrollY > 30); }
+  window.addEventListener('scroll', onScrollNav, { passive: true }); onScrollNav();
+  var toggle = $('#menuToggle'), mm = $('#mobileMenu');
+  toggle.addEventListener('click', function () { var o = mm.classList.toggle('open'); toggle.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+  $$('a', mm).forEach(function (a) { a.addEventListener('click', function () { mm.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }); });
+
+  /* ---------- orbital ring ---------- */
+  var ring = $('#ring');
+  PANELS.forEach(function (p, i) {
+    var b = el('button', { type: 'button', class: 'panel', 'aria-label': p.t + ' ' + p.s });
+    b.innerHTML = '<img src="img/' + p.img + '.webp" alt="" draggable="false"><span class="panel-cap">' + p.t + '<small>' + p.s + '</small></span>';
+    b.dataset.i = i;
+    ring.appendChild(b);
+  });
+  var panels = $$('.panel', ring), count = panels.length;
+  var spacingLevels = [0.8, 1, 1.16], spacingIndex = 1;
+  function radius() { return (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ring-radius')) || 380) * spacingLevels[spacingIndex]; }
+  function positionPanels() {
+    var r = radius();
+    panels.forEach(function (p, i) {
+      p.style.setProperty('--ry', (360 / count * i) + 'deg');
+      p.style.setProperty('--tz', r + 'px');
+      p.style.setProperty('--rz', (Math.sin(i / count * Math.PI * 2) * 6).toFixed(2) + 'deg');
+    });
+  }
+  positionPanels();
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(positionPanels, 150); });
+  $$('#spaceSeg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      spacingIndex = +b.dataset.space; positionPanels();
+      $$('#spaceSeg button').forEach(function (x) { x.classList.toggle('is-active', x === b); });
+    });
+  });
+  var zoom = $('#zoomSwitch');
+  zoom.addEventListener('click', function () {
+    var on = zoom.getAttribute('aria-checked') !== 'true';
+    zoom.setAttribute('aria-checked', on ? 'true' : 'false');
+    $('#ringTilt').style.setProperty('--zoom', on ? '1.22' : '1');
+  });
+
+  var stage = $('#stage'), parallax = $('#parallax');
+  var rotation = 0, velocity = 0, drift = reduceMotion ? 0 : 0.1, dragging = false, lastX = 0, moved = 0;
+  var tX = 6, tY = 0, cX = 6, cY = 0;
+  var floats = $$('.float-ing');
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  var mx = 0, my = 0;
+  if (!reduceMotion) window.addEventListener('mousemove', function (e) {
+    mx = e.clientX / window.innerWidth - 0.5; my = e.clientY / window.innerHeight - 0.5;
+    tY = mx * 22; tX = -my * 18 + 6;
+  });
+  stage.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.hero-controls')) return;
+    dragging = true; moved = 0; lastX = e.clientX; velocity = 0; stage.classList.add('dragging');
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    var dx = e.clientX - lastX; lastX = e.clientX; moved += Math.abs(dx);
+    rotation += dx * 0.3; velocity = clamp(dx * 0.3, -7, 7);
+  });
+  function endDrag() { if (!dragging) return; dragging = false; stage.classList.remove('dragging'); }
+  window.addEventListener('pointerup', endDrag); window.addEventListener('pointercancel', endDrag);
+  stage.addEventListener('wheel', function (e) {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); velocity = clamp(velocity + e.deltaX * 0.05, -7, 7); }
+  }, { passive: false });
+  var heroVisible = true;
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { heroVisible = en[0].isIntersecting; }).observe(stage);
+  function frame() {
+    if (heroVisible) {
+      if (!dragging) { rotation += drift + velocity; velocity *= 0.94; if (Math.abs(velocity) < 0.002) velocity = 0; }
+      ring.style.transform = 'rotateY(' + rotation.toFixed(3) + 'deg)';
+      cX += (tX - cX) * 0.06; cY += (tY - cY) * 0.06;
+      parallax.style.transform = 'rotateX(' + cX.toFixed(2) + 'deg) rotateY(' + cY.toFixed(2) + 'deg)';
+      floats.forEach(function (f) { var d = +f.dataset.depth; f.style.transform = 'translate(' + (mx * -30 * d).toFixed(1) + 'px,' + (my * -24 * d).toFixed(1) + 'px)'; });
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+
+  /* ---------- modal ---------- */
+  var modal = $('#modal'), lastFocus = null;
+  function openModal(p) {
+    lastFocus = document.activeElement;
+    $('#modalImg').src = 'img/' + p.img + '.webp'; $('#modalImg').alt = p.t;
+    $('#modalTag').textContent = p.tag; $('#modalTitle').textContent = p.t; $('#modalText').textContent = p.d;
+    var target = { 'สินค้า': '#products', 'วิธีกิน': '#eat', 'การทำ': '#craft', 'เรื่องเล่า': '#story', 'ของฝาก': '#gift' }[p.tag] || '#products';
+    var cta = $('#modalCta'); cta.href = target; cta.textContent = { '#products': 'ดูสินค้า', '#eat': 'ดูวิธีกิน', '#craft': 'ดูขั้นตอนการทำ', '#story': 'อ่านเรื่องเล่า', '#gift': 'ดูของฝาก' }[target];
+    modal.hidden = false; $('#modalClose').focus();
+  }
+  function closeModal() { modal.hidden = true; if (lastFocus) lastFocus.focus(); }
+  panels.forEach(function (b) { b.addEventListener('click', function () { if (moved > 6) return; openModal(PANELS[+b.dataset.i]); }); });
+  $('#modalClose').addEventListener('click', closeModal);
+  $('#modalCta').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  /* ---------- fireflies + spice level ---------- */
+  var cv = $('#fireflies'), ctx = cv.getContext('2d'), flies = [], spice = 2;
+  var HEAT = { 1: [241, 213, 140], 2: [236, 170, 80], 3: [232, 85, 63] };
+  var COUNT = { 1: 36, 2: 60, 3: 100 };
+  function sizeCanvas() { var d = Math.min(window.devicePixelRatio || 1, 2); cv.width = innerWidth * d; cv.height = innerHeight * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+  function makeFly() { return { x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: Math.random() * 1.8 + 0.8, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3 - .08, p: Math.random() * 6.28, sp: Math.random() * .02 + .01 }; }
+  function setFlies() { var n = COUNT[spice]; while (flies.length < n) flies.push(makeFly()); flies.length = n; }
+  sizeCanvas(); setFlies(); window.addEventListener('resize', sizeCanvas);
+  function drawFlies() {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    var c = HEAT[spice], speed = spice === 3 ? 1.8 : spice === 2 ? 1.2 : 1;
+    flies.forEach(function (f) {
+      if (!reduceMotion) { f.x += f.vx * speed; f.y += f.vy * speed; f.p += f.sp * speed; }
+      if (f.x < -10) f.x = innerWidth + 10; if (f.x > innerWidth + 10) f.x = -10;
+      if (f.y < -10) f.y = innerHeight + 10; if (f.y > innerHeight + 10) f.y = -10;
+      var a = (Math.sin(f.p) + 1) / 2 * .85 + .1;
+      var g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 6);
+      g.addColorStop(0, 'rgba(' + c + ',' + a + ')'); g.addColorStop(1, 'rgba(' + c + ',0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(f.x, f.y, f.r * 6, 0, 6.28); ctx.fill();
+    });
+    if (!reduceMotion) requestAnimationFrame(drawFlies);
+  }
+  drawFlies();
+  $$('#spiceSeg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      spice = +b.dataset.level; setFlies();
+      document.documentElement.style.setProperty('--heat', HEAT[spice].join(', '));
+      $$('#spiceSeg button').forEach(function (x) { x.classList.toggle('is-active', x === b); });
+      if (reduceMotion) drawFlies();
+      toast(['', 'เผ็ดน้อย ละมุนๆ', 'เผ็ดกำลังดี', 'เผ็ดจี๊ดถึงใจ'][spice]);
+    });
+  });
+
+  /* ---------- reveal (only elements below the fold wait) ---------- */
+  var lifts = $$('.lift');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    lifts.forEach(function (e) { if (e.getBoundingClientRect().top > innerHeight) e.classList.add('pending'); });
+    var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.remove('pending'); io.unobserve(x.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    lifts.forEach(function (e) { io.observe(e); });
+    setTimeout(function () { lifts.forEach(function (e) { e.classList.remove('pending'); }); }, 4000);
+  }
+
+  /* ---------- story map boat ---------- */
+  var mapEl = $('#map'), path = $('#routePath'), boat = $('#mapBoat');
+  var L = path.getTotalLength();
+  path.style.strokeDasharray = L; path.style.strokeDashoffset = L;
+  function updateMap() {
+    var r = mapEl.getBoundingClientRect();
+    var t = clamp((innerHeight * 0.85 - r.top) / (r.height + innerHeight * 0.3), 0, 1);
+    if (reduceMotion) t = 1;
+    path.style.strokeDashoffset = L * (1 - t);
+    var pt = path.getPointAtLength(L * t);
+    boat.style.left = (pt.x / 1200 * 100) + '%'; boat.style.top = (pt.y / 900 * 100) + '%';
+  }
+  window.addEventListener('scroll', updateMap, { passive: true }); window.addEventListener('resize', updateMap); updateMap();
+
+  /* ---------- taste curves ---------- */
+  var g = $('#curves'), ns = 'http://www.w3.org/2000/svg', box = $('#curveBox'), notes = $('#notes');
+  FLAVORS.forEach(function (f, i) {
+    var pts = [], base = 270;
+    for (var x = 40; x <= 620; x += 6) pts.push([x, base - f.h * Math.exp(-Math.pow((x - f.peak) / f.w, 2))]);
+    var d = 'M' + pts.map(function (p) { return p[0] + ' ' + p[1].toFixed(1); }).join(' L');
+    var grp = document.createElementNS(ns, 'g'); grp.setAttribute('data-i', i);
+    var area = document.createElementNS(ns, 'path'); area.setAttribute('d', d + ' L620 270 L40 270Z'); area.setAttribute('class', 'area'); area.setAttribute('fill', f.c);
+    var cur = document.createElementNS(ns, 'path'); cur.setAttribute('d', d); cur.setAttribute('class', 'curve'); cur.setAttribute('stroke', f.c);
+    var tx = document.createElementNS(ns, 'text'); tx.setAttribute('x', f.peak); tx.setAttribute('y', 270 - f.h - 12); tx.setAttribute('text-anchor', 'middle'); tx.setAttribute('class', 'peak'); tx.setAttribute('fill', f.c); tx.textContent = f.k;
+    grp.appendChild(area); grp.appendChild(cur); grp.appendChild(tx); g.appendChild(grp);
+    var li = el('li'); var b = el('button', { type: 'button' }, '<i style="background:' + f.c + '"></i><b>' + f.k + '</b><span>' + f.d + '</span>');
+    function on() { box.classList.add('dim'); $$('#curves g').forEach(function (x) { x.classList.toggle('on', +x.dataset.i === i); }); $$('button', notes).forEach(function (x) { x.classList.toggle('on', x === b); }); }
+    b.addEventListener('mouseenter', on); b.addEventListener('focus', on); b.addEventListener('click', on);
+    li.appendChild(b); notes.appendChild(li);
+  });
+  notes.addEventListener('mouseleave', function () { box.classList.remove('dim'); $$('button', notes).forEach(function (x) { x.classList.remove('on'); }); });
+
+  /* ---------- products + cart ---------- */
+  var cart = {};
+  try { cart = JSON.parse(localStorage.getItem('bansuan-cart') || '{}') || {}; } catch (e) { cart = {}; }
+  function saveCart() { try { localStorage.setItem('bansuan-cart', JSON.stringify(cart)); } catch (e) {} }
+  function spiceHtml(n) {
+    if (!n) return '<span class="spice">รวม 3 ระดับ</span>';
+    var s = '<span class="spice" aria-label="ความเผ็ด ' + n + ' จาก 3">';
+    for (var i = 1; i <= 3; i++) s += '<img src="img/chili.webp" alt=""' + (i <= n ? ' class="on"' : '') + '>';
+    return s + '<span>' + ['', 'เผ็ดน้อย', 'เผ็ดกลาง', 'เผ็ดมาก'][n] + '</span></span>';
+  }
+  var grid = $('#productGrid');
+  PRODUCTS.forEach(function (p) {
+    var a = el('article', { class: 'product lift' });
+    a.innerHTML = '<div class="product-img"><img src="' + p.img + '" alt="' + p.name + '" loading="lazy">' + (p.tag ? '<span class="tag">' + p.tag + '</span>' : '') + '</div>' +
+      '<div class="product-body">' + spiceHtml(p.spice) + '<h3>' + p.name + '</h3><p>' + p.desc + '</p>' +
+      '<div class="buy"><span class="price">' + baht(p.price) + '<small>' + p.size + '</small></span>' +
+      '<button type="button" class="btn btn-primary btn-sm" data-add="' + p.id + '">ใส่ตะกร้า</button></div></div>';
+    grid.appendChild(a);
+  });
+  function find(id) { for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].id === id) return PRODUCTS[i]; }
+  function add(id, n) { cart[id] = (cart[id] || 0) + (n || 1); if (cart[id] <= 0) delete cart[id]; saveCart(); renderCart(); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-add]'); if (!b) return;
+    add(b.dataset.add, 1); toast('ใส่ ' + find(b.dataset.add).short + ' ลงตะกร้าแล้ว');
+  });
+  function renderCart() {
+    var wrap = $('#cartWrap'), ids = Object.keys(cart).filter(find), total = 0, n = 0;
+    if (!ids.length) {
+      wrap.innerHTML = '<div class="cart-empty"><img src="img/ic-jar.webp" alt=""><span>ยังไม่มีสินค้าในตะกร้า</span><a class="btn btn-ghost btn-sm" href="#products">เลือกสินค้า</a></div>';
+    } else {
+      var ul = el('ul', { class: 'cart-list' });
+      ids.forEach(function (id) {
+        var p = find(id), q = cart[id]; total += p.price * q; n += q;
+        var li = el('li');
+        li.innerHTML = '<img src="' + p.img + '" alt=""><span class="nm">' + p.name + '<small>' + baht(p.price) + ' × ' + q + ' = ' + baht(p.price * q) + '</small></span>' +
+          '<span class="qty"><button type="button" aria-label="ลด ' + p.short + '" data-q="-1">−</button><output>' + q + '</output><button type="button" aria-label="เพิ่ม ' + p.short + '" data-q="1">+</button></span>';
+        $$('[data-q]', li).forEach(function (b) { b.addEventListener('click', function () { add(id, +b.dataset.q); }); });
+        ul.appendChild(li);
+      });
+      wrap.innerHTML = ''; wrap.appendChild(ul);
+    }
+    $('#cartTotal').textContent = baht(total); $('#cartCount').textContent = n;
+    buildMsg();
+  }
+
+  /* ---------- order message ---------- */
+  var form = $('#orderForm'), giftCb = $('#oGift');
+  function buildMsg() {
+    var ids = Object.keys(cart).filter(find), lines = ['สั่งซื้อ บ้านสวน น้ำพริกลงเรือ'], total = 0;
+    if (!ids.length) lines.push('(ยังไม่ได้เลือกสินค้า)');
+    ids.forEach(function (id) { var p = find(id); total += p.price * cart[id]; lines.push('• ' + p.name + ' × ' + cart[id] + ' = ' + baht(p.price * cart[id])); });
+    lines.push('รวมค่าสินค้า ' + baht(total) + ' (ยังไม่รวมค่าส่ง)');
+    lines.push('', 'ชื่อผู้รับ: ' + ($('#oName').value.trim() || '-'), 'เบอร์โทร: ' + ($('#oPhone').value.trim() || '-'), 'ที่อยู่: ' + ($('#oAddr').value.trim() || '-'));
+    if (giftCb.checked) lines.push('ส่งเป็นของขวัญ: ใช่', 'ข้อความถึงผู้รับ: ' + ($('#oNote').value.trim() || '-'));
+    var msg = lines.join('\n'); $('#msgPreview').textContent = msg; return msg;
+  }
+  form.addEventListener('input', buildMsg);
+  giftCb.addEventListener('change', function () { $('#giftNoteField').hidden = !giftCb.checked; buildMsg(); });
+  if (SHOP.lineUrl) { var lb = $('#lineBtn'); lb.href = SHOP.lineUrl; lb.hidden = false; }
+  function copy(text, okMsg, target) {
+    function fallback() { var r = document.createRange(); r.selectNodeContents(target); var s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('เลือกข้อความไว้แล้ว กดคัดลอกได้เลย'); }
+    try { navigator.clipboard.writeText(text).then(function () { toast(okMsg); }, fallback); } catch (e) { fallback(); }
+  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var st = $('#orderStatus');
+    if (!Object.keys(cart).filter(find).length) { st.textContent = 'ตะกร้ายังว่าง เลือกสินค้าก่อนนะ'; return; }
+    if (!$('#oName').value.trim() || !$('#oPhone').value.trim() || !$('#oAddr').value.trim()) { st.textContent = 'กรอกชื่อ เบอร์โทร และที่อยู่ให้ครบก่อนคัดลอก'; return; }
+    st.textContent = 'คัดลอกแล้ว ส่งข้อความนี้ให้ร้านทางแชต หรือโทร ' + SHOP.phone;
+    copy(buildMsg(), 'คัดลอกข้อความสั่งซื้อแล้ว', $('#msgPreview'));
+  });
+  $('#copyPhone').addEventListener('click', function () { copy('0869857830', 'คัดลอกเบอร์ 086-985-7830 แล้ว', $('.contact .phone-big')); });
+  $('#fabCart').addEventListener('click', function () { $('#order').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }); });
+  $('#giftBtn').addEventListener('click', function () {
+    if (!cart.gift) add('gift', 1);
+    giftCb.checked = true; $('#giftNoteField').hidden = false; buildMsg();
+    $('#order').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    toast('ใส่กล่องของฝากลงตะกร้าแล้ว');
+  });
+  renderCart();
+
+  /* ---------- quiz ---------- */
+  var qi = 0, score = 0, qc = $('#quizCard');
+  function renderQuiz() {
+    if (qi < QUIZ.length) {
+      var q = QUIZ[qi];
+      qc.innerHTML = '<span class="quiz-progress">ข้อ ' + (qi + 1) + ' จาก ' + QUIZ.length + '</span><p class="quiz-q">' + q.q + '</p><div class="quiz-opts"></div>';
+      q.o.forEach(function (o, i) { var b = el('button', { type: 'button' }, o); b.addEventListener('click', function () { score += i; qi++; renderQuiz(); }); $('.quiz-opts', qc).appendChild(b); });
+    } else {
+      var id = score <= 1 ? 'mild' : score <= 4 ? 'original' : 'hot', p = find(id);
+      var label = { mild: 'สายละมุน', original: 'สายกลมกล่อม', hot: 'สายเผ็ดตัวจริง' }[id];
+      qc.innerHTML = '<span class="quiz-progress">ผลของคุณ: ' + label + '</span><div class="quiz-result"><img src="' + p.img + '" alt=""><div><h4>' + p.name + '</h4><p>' + p.desc + '</p></div></div>' +
+        '<div class="btn-row" style="justify-content:flex-start"><button type="button" class="btn btn-primary btn-sm" data-add="' + id + '">ใส่ตะกร้า</button><button type="button" class="btn btn-ghost btn-sm" id="quizAgain">ทำใหม่</button></div>';
+      $('#quizAgain').addEventListener('click', function () { qi = 0; score = 0; renderQuiz(); });
+    }
+  }
+  renderQuiz();
+
+  /* ---------- pairings ---------- */
+  var tabs = $('#pairTabs'), card = $('#pairCard');
+  function showPair(i) {
+    card.innerHTML = '<h3>' + PAIRS[i].k + '</h3><p>' + PAIRS[i].d + '</p>';
+    $$('button', tabs).forEach(function (b, j) { b.classList.toggle('on', j === i); });
+    $$('.side').forEach(function (b) { b.classList.toggle('on', +b.dataset.pair === i); });
+  }
+  PAIRS.forEach(function (p, i) { var b = el('button', { type: 'button' }, p.k); b.addEventListener('click', function () { showPair(i); }); tabs.appendChild(b); });
+  $$('.side').forEach(function (b) { b.addEventListener('click', function () { showPair(+b.dataset.pair); }); });
+  showPair(0);
+
+  /* ---------- hacks ---------- */
+  var hk = $('#hacks');
+  HACKS.forEach(function (h) {
+    var b = el('button', { type: 'button', class: 'flip', 'aria-label': h.t + ' แตะเพื่อดูวิธีทำ' });
+    b.innerHTML = '<span class="flip-inner"><span class="face front"><img src="img/' + h.img + '.webp" alt="" loading="lazy"><span class="cap"><h3>' + h.t + '</h3><small>' + h.s + '</small></span></span>' +
+      '<span class="face back"><h3>' + h.t + '</h3><ol>' + h.steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol><small>แตะอีกครั้งเพื่อดูรูป</small></span></span>';
+    b.addEventListener('click', function () { b.classList.toggle('on'); });
+    hk.appendChild(b);
+  });
+})();
+</script>
+
+</body>
+</html>
